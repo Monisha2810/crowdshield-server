@@ -72,16 +72,7 @@ app.post("/alert", async (req, res) => {
     console.log("Event stored:", eventRef.key);
 
     // ── Fetch phone numbers from Firebase ───────────────────────────────────
-    const usersSnap = await db.ref("users").once("value");
-    const users = usersSnap.val() || {};
-
-    const phoneList = Object.values(users)
-      .map((u) => (u && u.phone ? String(u.phone).trim() : ""))
-      .filter((p) => p.length > 0)
-      .map((p) => {
-        // Ensure E.164 format — add + if missing
-        return p.startsWith("+") ? p : `+${p}`;
-      });
+    const phoneList = ["+919042232339"];  // your verified number
 
     console.log("Phones to notify:", phoneList);
 
